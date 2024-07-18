@@ -7,12 +7,12 @@
 .title {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  font-size: 2.5rem; 
+  font-size: 2.0rem; 
 }
 
 .teaser-text {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem; 
+  font-size: 1.2rem; 
 }
 
 
@@ -21,11 +21,11 @@
     font-size: 1.8rem; 
   }
   .teaser-text {
-    font-size: 1.2rem; 
+    font-size: 1.1rem; 
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px)  {
   .title {
     font-size: 1.2rem; 
     margin-top: 20px;

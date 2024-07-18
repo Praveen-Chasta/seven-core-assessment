@@ -1,36 +1,35 @@
-import { useState, useEffect } from "react";
-import BlogPostItem from '../BlogPostItem'
+import { useContext } from 'react';
+import { BlogContext } from '../BlogProvider';
+import BlogPostItem from '../BlogPostItem';
+import { Link } from 'react-router-dom';
 
-function BlogPostList () {
-  
-  const [blogList, setBlogList] = useState([])
-  
-  useEffect(() => {
-    fetch('https://newsapi.org/v2/everything?q=tesla&from=2024-06-17&sortBy=publishedAt&apiKey=7a470b3492d04d768d406efdbb22cba9')
-      .then((response) => response.json())
-      .then((data) => {
-        setBlogList(data.articles);
-      })
-      .catch((error) => {
-        console.error('Error fetching the blog posts:', error);
-      });
-  }, []);
+function BlogPostList() {
+  const { blogList, loading } = useContext(BlogContext);
 
-  return(
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
     <>
-     {blogList.map((blog, index) => (
-        <BlogPostItem
+      {blogList.map((blog, index) => (
+        <Link
+          to={`/post/${index}`}
           key={index}
-          title={blog.title}
-          description={blog.description}
-          author={blog.author}
-          publishedAt={blog.publishedAt}
-          url={blog.url}
-          urlToImage={blog.urlToImage}
-        />
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <BlogPostItem
+            title={blog.title}
+            description={blog.description}
+            author={blog.author}
+            publishedAt={blog.publishedAt}
+            url={blog.url}
+            urlToImage={blog.urlToImage}
+          />
+        </Link>
       ))}
     </>
-  )
+  );
 }
 
-export default BlogPostList
+export default BlogPostList;

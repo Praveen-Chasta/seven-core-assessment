@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { BlogContext } from '../BlogProvider';
-import './index.css'; // Ensure you import the CSS file
+import './index.css'; 
 
 function BlogPostDetails() {
   const { id } = useParams();
